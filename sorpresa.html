@@ -1,0 +1,152 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi enamorada ❤️</title>
+    <style>
+        * { margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+        body { background: #fff0f5; text-align: center; padding: 20px; }
+        .corazon-container { margin: 50px auto; cursor: pointer; }
+        .corazon-vacio { font-size: 80px; color: #ccc; transition: all 0.3s; }
+        .corazon-lleno { color: #e63946; }
+        .oculto { display: none; }
+        .contenido { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
+        h1 { color: #e63946; margin-bottom: 20px; }
+        .seccion { margin: 25px 0; text-align: left; }
+        .pregunta { margin: 15px 0; padding: 12px; background: #ffe6ea; border-radius: 10px; }
+        button { background: #e63946; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; margin-top: 8px; }
+        button:hover { background: #c1121f; }
+        .correcta { color: green; font-weight: bold; }
+        .incorrecta { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<!-- PANTALLA INICIAL - CORAZÓN -->
+<div id="pantalla-inicio" class="contenido">
+    <h1>💌 Toca el corazón 💌</h1>
+    <div class="corazon-container" id="corazon-click">
+        <div class="corazon-vacio" id="corazon">❤️</div>
+    </div>
+    <p id="mensaje-progreso">Sigue tocando... ❤️ 0/10</p>
+</div>
+
+<!-- PANTALLA PRINCIPAL -->
+<div id="pantalla-principal" class="contenido oculto">
+    <h1>💕 Para ti 💕</h1>
+
+    <div class="seccion">
+        <h2>Nuestra Foto 📸</h2>
+        <img src="https://imgur.com/a/Fq4ejBK" alt="Nosotros">
+    </div>
+
+    <div class="seccion">
+        <h2>💖 Tiempo juntos</h2>
+        <p>Estamos juntos desde: <strong>1 de Enero de 2024</strong></p>
+        <p id="dias-juntos">Llevamos 0 días llenos de amor 💕</p>
+    </div>
+
+    <div class="seccion">
+        <h2>🎶 Nuestra Canción</h2>
+        <audio controls>
+            <source src="https://drive.google.com/drive/home?hl=es" type="audio/mpeg">                   
+    </div>
+
+    <div class="seccion">
+        <h2>🎤 Mi voz para ti</h2>
+        <audio controls>
+            <source src="enlace-de-tu-audio.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        
+    </div>
+
+    <div class="seccion">
+        <h2>💌 Para ti</h2>
+        <p>
+            No soy de las personas que dicen cosas hermosas todo el tiempo, pero hoy quiero decírtelo todo. Eres la persona que más me hace bien, mi refugio y mi alegría favorita.
+Antes de ti las cosas eran distintas, pero desde que estás todo tiene más sentido y más color. Me encanta cómo eres, tu forma de ver la vida, cómo me tratas y cómo me haces sentir cuando estoy contigo.
+
+Hoy que es tu cumpleaños lo único que quiero decirte es lo agradecido que estoy de que hayas nacido. A veces no te lo digo tanto como debería, pero cada día que pasa me doy cuenta de lo suertudo que soy de tenerte a mi lado. No necesito nada especial para ser feliz, solo verte bien, verte sonreír y saber que estás conmigo me basta.
+
+Gracias por ser como eres, por tenerme paciencia, por cuidarme y por hacerme sentir tan querido siempre. Espero que este nuevo año de vida te traiga todo lo bueno que te mereces, que sonrías mucho hoy y siempre, y que se cumplan cada una de esas cosas que guardas en tu corazón, en este día tan especial solo quiero pedirle a la vida que te cuide, que te dé salud, que te llene de satisfacciones y que nos deje caminar juntos mucho tiempo más. Te quiero mucho, con el corazón en la mano, y deseo que seas la persona más feliz del mundo, porque te lo mereces más que nadie. ❤️
+        </p>
+    </div>
+
+    <div class="seccion">
+        <h2>🧐 ¿Cuánto nos conocemos?</h2>
+        
+        <div class="pregunta">
+            <p><strong>1. ¿Dónde nos conocimos?</strong></p>
+            <button onclick="respuesta(this, false)">En el colegio</button>
+            <button onclick="respuesta(this, true)">En el trabajo ✅</button>
+            <button onclick="respuesta(this, false)">Por amigos</button>
+            <button onclick="respuesta(this, false)">En el parque</button>
+            <p class="mensaje-respuesta"></p>
+        </div>
+
+        <div class="pregunta">
+            <p><strong>2. ¿Cuál fue nuestra primera salida?</strong></p>
+            <button onclick="respuesta(this, false)">Al cine</button>
+            <button onclick="respuesta(this, false)">Al parque de las aguas</button>
+            <button onclick="respuesta(this, true)">A comer helado ✅</button>
+            <button onclick="respuesta(this, false)">Al centro</button>
+            <p class="mensaje-respuesta"></p>
+        </div>
+
+        <div class="pregunta">
+            <p><strong>2. ¿Dónde fue nuestro primer beso?</strong></p>
+            <button onclick="respuesta(this, false)">En el parque</button>
+            <button onclick="respuesta(this, false)">En el trabajo</button>
+            <button onclick="respuesta(this, true)">En el parque de las aguas ✅</button>
+            <button onclick="respuesta(this, false)">En el cine</button>
+            <p class="mensaje-respuesta"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+// LÓGICA DEL CORAZÓN
+let clicks = 0;
+const meta = 10; // Veces que hay que tocar
+const corazon = document.getElementById('corazon');
+const mensaje = document.getElementById('mensaje-progreso');
+const pantallaInicio = document.getElementById('pantalla-inicio');
+const pantallaPrincipal = document.getElementById('pantalla-principal');
+
+document.getElementById('corazon-click').addEventListener('click', () => {
+    clicks++;
+    const porcentaje = clicks / meta;
+    corazon.style.opacity = 0.3 + (porcentaje * 0.7);
+    corazon.classList.toggle('corazon-lleno', porcentaje >= 0.5);
+    mensaje.textContent = `Sigue tocando... ❤️ ${clicks}/${meta}`;
+
+    if (clicks >= meta) {
+        pantallaInicio.classList.add('oculto');
+        pantallaPrincipal.classList.remove('oculto');
+        calcularDias();
+    }
+});
+
+// CALCULAR DÍAS JUNTOS
+function calcularDias() {
+    const fechaInicio = new Date('2024-03-17');
+    const hoy = new Date();
+    const diferencia = Math.ceil((hoy - fechaInicio) / (1000 * 60 * 60 * 24));
+    document.getElementById('dias-juntos').textContent = 
+        `¡Llevamos ${diferencia} días llenos de amor! 💕`;
+}
+
+// TRIVIA
+function respuesta(boton, esCorrecta) {
+    const contenedor = boton.parentElement;
+    const mensaje = contenedor.querySelector('.mensaje-respuesta');
+    if (esCorrecta) {
+        mensaje.innerHTML = '<span class="correcta">✅ ¡Correcto!</span>';
+    } else {
+        mensaje.innerHTML = '<span class="incorrecta">❌ Inténtalo de nuevo</span>';
+    }
+}
+</script>
+</body>
+</html>
